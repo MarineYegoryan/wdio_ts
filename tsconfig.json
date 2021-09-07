@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "outDir": "./build",
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": [ "./*" ]
+    },
+    "types": ["node", "webdriverio/sync", "@wdio/cucumber-framework"],
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "include": [
+    "./**//**/**/*.ts"
+  ]
+}
+
