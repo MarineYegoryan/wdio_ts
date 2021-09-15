@@ -5,39 +5,14 @@ import { hideBin } from "yargs/helpers";
 
 const { argv }: any = yargs(hideBin(process.argv));
 
-let capability;
-let baseUrl;
-
 const BROWSER_NAME = argv.browser || "chrome";
 const ENV_NAME = argv.env || "TEST";
 
-switch (ENV_NAME) {
-    case "E2E":
-        baseUrl = envs["E2E"];
-        break;
-    case "DEV":
-        baseUrl = envs["DEV"];
-        break;
-    case "TEST":
-        baseUrl = envs["TEST"];
-        break;
-    default:
-        break;
-}
 
-switch (BROWSER_NAME) {
-    case "firefox":
-        capability = capabilities["firefoxBrowser"];
-        break;
-    case "edge":
-        capability = capabilities["edgeBrowser"];
-        break;
-    case "chrome":
-        capability = capabilities["chromeBrowser"];
-        break;
-    default:
-        break;
-}
+let capability = capabilities[BROWSER_NAME];
+let baseUrl = envs[ENV_NAME];
+console.log(baseUrl);
+console.log(capability);
 
 export const config = {
     //

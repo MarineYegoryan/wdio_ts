@@ -12,10 +12,8 @@
     "@cucumber/cucumber": "latest",
     "@types/jquery": "^2.0.47",
     "@types/mocha": "^9.0.0",
-    "@types/yargs": "^17.0.2",
     "@wdio/cli": "^7.10.1",
     "chromedriver": "^93.0.1",
-    "firefox-profile": "^4.2.1",
     "geckodriver": "^2.0.4",
     "jquery": "^3.6.0",
     "yargs": "^17.1.1"

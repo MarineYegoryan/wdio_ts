@@ -1,17 +1,34 @@
 {
-    "chromeBrowser": {
+    "chrome": {
         "maxInstances": 5,
         "browserName": "chrome",
         "acceptInsecureCerts": true
     },
-    "firefoxBrowser": {
+    "firefox": {
         "maxInstances": 5,
         "browserName": "firefox",
         "acceptInsecureCerts": true
     },
-    "edgeBrowser": {
+    "edge": {
         "maxInstances": 5,
         "browserName": "edge",
         "acceptInsecureCerts": true
+    },
+    "multi": {
+        "chrome": {
+            "maxInstances": 5,
+            "browserName": "chrome",
+            "acceptInsecureCerts": true
+        },
+        "firefox": {
+            "maxInstances": 5,
+            "browserName": "firefox",
+            "acceptInsecureCerts": true
+        },
+        "edge": {
+            "maxInstances": 5,
+            "browserName": "edge",
+            "acceptInsecureCerts": true
+        }
     }
 }
