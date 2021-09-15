@@ -1,0 +1,17 @@
+{
+    "chromeBrowser": {
+        "maxInstances": 5,
+        "browserName": "chrome",
+        "acceptInsecureCerts": true
+    },
+    "firefoxBrowser": {
+        "maxInstances": 5,
+        "browserName": "firefox",
+        "acceptInsecureCerts": true
+    },
+    "edgeBrowser": {
+        "maxInstances": 5,
+        "browserName": "edge",
+        "acceptInsecureCerts": true
+    }
+}

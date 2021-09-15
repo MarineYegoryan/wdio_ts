@@ -12,8 +12,13 @@
     "@cucumber/cucumber": "latest",
     "@types/jquery": "^2.0.47",
     "@types/mocha": "^9.0.0",
+    "@types/yargs": "^17.0.2",
     "@wdio/cli": "^7.10.1",
-    "jquery": "^3.6.0"
+    "chromedriver": "^93.0.1",
+    "firefox-profile": "^4.2.1",
+    "geckodriver": "^2.0.4",
+    "jquery": "^3.6.0",
+    "yargs": "^17.1.1"
   },
   "devDependencies": {
     "@wdio/crossbrowsertesting-service": "^7.10.1",
@@ -23,7 +28,6 @@
     "@wdio/sauce-service": "^7.10.1",
     "@wdio/spec-reporter": "^7.10.1",
     "chai": "^4.3.4",
-    "chromedriver": "^92.0.1",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.2",
     "wdio-chromedriver-service": "^7.2.0",

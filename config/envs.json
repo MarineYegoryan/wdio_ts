@@ -1,0 +1,5 @@
+{
+  "E2E": "e2e",
+  "TEST": "test",
+  "DEV": "dev"
+}

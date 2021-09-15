@@ -1,4 +1,45 @@
-exports.config = {
+import yargs from "yargs/yargs";
+import envs from "./config/envs.json";
+import capabilities from "./config/capabilities.json";
+import { hideBin } from "yargs/helpers";
+
+const { argv }: any = yargs(hideBin(process.argv));
+
+let capability;
+let baseUrl;
+
+const BROWSER_NAME = argv.browser || "chrome";
+const ENV_NAME = argv.env || "TEST";
+
+switch (ENV_NAME) {
+    case "E2E":
+        baseUrl = envs["E2E"];
+        break;
+    case "DEV":
+        baseUrl = envs["DEV"];
+        break;
+    case "TEST":
+        baseUrl = envs["TEST"];
+        break;
+    default:
+        break;
+}
+
+switch (BROWSER_NAME) {
+    case "firefox":
+        capability = capabilities["firefoxBrowser"];
+        break;
+    case "edge":
+        capability = capabilities["edgeBrowser"];
+        break;
+    case "chrome":
+        capability = capabilities["chromeBrowser"];
+        break;
+    default:
+        break;
+}
+
+export const config = {
     //
     // ====================
     // Runner Configuration
@@ -21,7 +62,7 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './features/**/*.feature'
+        "./features/**/*.feature"
     ],
     // Patterns to exclude.
     exclude: [
@@ -43,26 +84,12 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [{
-
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 5,
-        //
-        browserName: 'chrome',
-        acceptInsecureCerts: true
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to include/exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        // excludeDriverLogs: ['bugreport', 'server'],
-    }],
+    capabilities: [ capability ],
     //
     // ===================
     // Test Configurations
@@ -70,7 +97,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: "info",
     //
     // Set specific log levels per logger
     // loggers:
@@ -94,7 +121,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'https://youtube.com/',
+    baseUrl: baseUrl,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -110,7 +137,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver','firefox-profile','crossbrowsertesting'],
+    services: ["chromedriver", "firefox-profile", "crossbrowsertesting"],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -118,7 +145,7 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'cucumber',
+    framework: "cucumber",
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
@@ -139,7 +166,7 @@ exports.config = {
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./step-definitions/*.ts'],
+        require: ["./step-definitions/*.ts"],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -148,7 +175,7 @@ exports.config = {
         // <boolean> abort the run on first failure
         failFast: false,
         // <string[]> (type[:path]) specify the output format, optionally supply PATH to redirect formatter output (repeatable)
-        format: ['pretty'],
+        format: ["pretty"],
         // <boolean> hide step definition snippets for pending steps
         snippets: true,
         // <boolean> hide source uris
@@ -309,10 +336,10 @@ exports.config = {
     // onComplete: function(exitCode, config, capabilities, results) {
     // },
     /**
-    * Gets executed when a refresh happens.
-    * @param {String} oldSessionId session ID of the old session
-    * @param {String} newSessionId session ID of the new session
-    */
+     * Gets executed when a refresh happens.
+     * @param {String} oldSessionId session ID of the old session
+     * @param {String} newSessionId session ID of the new session
+     */
     //onReload: function(oldSessionId, newSessionId) {
     //}
 }
