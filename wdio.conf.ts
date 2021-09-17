@@ -1,7 +1,10 @@
 import yargs from "yargs/yargs";
+import rpService from "wdio-reportportal-service"
+import rpReporter from "wdio-reportportal-reporter"
+import { hideBin } from "yargs/helpers";
 import { urls } from "./config/urls";
 import { capabilities } from "./config/capabilities";
-import { hideBin } from "yargs/helpers";
+import { rpConfig } from "./config/rpConfig"
 
 const { argv }: any = yargs(hideBin(process.argv));
 const BROWSER_NAME = argv.browser || "chrome";
@@ -9,6 +12,12 @@ const ENV_NAME = argv.env || "test";
 
 let capability = capabilities[BROWSER_NAME];
 let baseUrl = urls[ENV_NAME];
+
+if (!ENV_NAME || !["qa", "dev", "prod"].includes(ENV_NAME)) {
+    rpReporter.sendLog("error", "enter correct ENVIRONMENT value: env = qa|dev|prod");
+    process.exit();
+}
+
 
 export const config = {
     //
@@ -108,7 +117,7 @@ export const config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ["chromedriver", "firefox-profile", "crossbrowsertesting"],
+    services: ["chromedriver", [rpService, {}], "firefox-profile", "crossbrowsertesting"],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -132,7 +141,10 @@ export const config = {
     // see also: https://webdriver.io/docs/dot-reporter
     // reporters: ['spec','reportportal'],
 
-
+    reporters: [
+        "spec",
+        [rpReporter, rpConfig],
+    ],
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
