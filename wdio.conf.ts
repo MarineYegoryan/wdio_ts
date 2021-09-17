@@ -1,18 +1,14 @@
 import yargs from "yargs/yargs";
-import envs from "./config/envs.json";
-import capabilities from "./config/capabilities.json";
+import { urls } from "./config/urls";
+import { capabilities } from "./config/capabilities";
 import { hideBin } from "yargs/helpers";
 
 const { argv }: any = yargs(hideBin(process.argv));
-
 const BROWSER_NAME = argv.browser || "chrome";
-const ENV_NAME = argv.env || "TEST";
-
+const ENV_NAME = argv.env || "test";
 
 let capability = capabilities[BROWSER_NAME];
-let baseUrl = envs[ENV_NAME];
-console.log(baseUrl);
-console.log(capability);
+let baseUrl = urls[ENV_NAME];
 
 export const config = {
     //
