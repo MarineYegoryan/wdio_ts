@@ -4,7 +4,7 @@
   "description": "WebDriverIO JavaScript Mocha TAF",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio run ./wdio.conf.ts"
+    "test": "npx wdio run ./wdio.conf.ts --rpToken=f630704a-644f-43e0-afce-5fe95a56cf22"
   },
   "author": "Marine Yegoryan",
   "license": "ISC",
