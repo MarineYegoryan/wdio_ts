@@ -1,7 +1,7 @@
 import {expect, assert} from "chai";
 import {constants} from "../../configs/const";
-const timeout = constants.DELAY;
 import {config} from "../../wdio.conf";
+const timeout = constants.DELAY;
 const baseUrl = config.baseUrl;
 /**
  * main page object containing all methods, selectors and functionality
