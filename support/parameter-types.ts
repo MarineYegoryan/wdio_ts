@@ -1,10 +1,12 @@
 import { defineParameterType } from '@cucumber/cucumber';
+import {findElement} from '../step-definitions/utils/stepFunctions'
 
 /**
  * Used for returning chai assertion condition
  */
 defineParameterType({
     regexp: /exist|be enabled|be displayed|be clickable|be focused|be displayed in viewport/,
+    name: 'wait condition',
     transformer(condition) {
         const CONDITIONS = {
             'exist': 'waitForExist',
@@ -16,6 +18,14 @@ defineParameterType({
         };
         return CONDITIONS[condition];
     },
-    name: 'wait condition',
+    useForSnippets: false,
+});
+
+defineParameterType({
+    regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
+    name: 'locator',
+    transformer: (element) => {
+        return findElement(element)
+    },
     useForSnippets: false,
 });

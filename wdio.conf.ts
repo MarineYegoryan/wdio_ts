@@ -13,10 +13,11 @@ const ENV_NAME = argv.env || "test";
 let capability = capabilities[BROWSER_NAME];
 let baseUrl = urls[ENV_NAME];
 
-if (!ENV_NAME || !["qa", "dev", "prod"].includes(ENV_NAME)) {
-    rpReporter.sendLog("error", "enter correct ENVIRONMENT value: env = qa|dev|prod");
-    process.exit();
-}
+// if (!ENV_NAME || !["qa", "dev", "prod"].includes(ENV_NAME)) {
+//     rpReporter.sendLog("ERROR", "enter correct ENVIRONMENT value: env = qa|dev|prod");
+//        console.log("wrong------------")
+//     process.exit();
+// }
 
 
 export const config = {

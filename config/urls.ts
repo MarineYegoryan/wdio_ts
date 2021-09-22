@@ -1,5 +1,5 @@
 export const urls = {
-  "e2e": "e2e-url",
-  "test": "test-url",
-  "dev": "dev-url"
+  "e2e": "https://the-internet.herokuapp.com/",
+  "test": "https://the-internet.herokuapp.com/",
+  "dev": "https://the-internet.herokuapp.com/"
 }

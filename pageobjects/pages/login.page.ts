@@ -1,13 +1,12 @@
-import Page from './page';
-
+import {BasePage} from "./base.page";
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class LoginPage extends Page {
+class LoginPage extends BasePage {
 
-    public get inputUsername() : any { return $('#username') }
-    public get inputPassword () : any { return $('#password') }
-    public get btnSubmit () : any { return $('button[type="submit"]') }
+    public get inputUsername() : any { return $("#username") }
+    public get inputPassword () : any { return $("#password") }
+    public get btnSubmit () : any { return $("button[type='submit']") }
 
     async login (username :string, password :string) {
         await this.inputUsername.setValue(username);
@@ -16,9 +15,8 @@ class LoginPage extends Page {
     }
 
     open () {
-        return super.open('login');
+        return super.open("login");
     }
-
 }
 
 export default new LoginPage();
