@@ -7,7 +7,7 @@ defineParameterType({
     regexp: /exist|be enabled|be displayed|be clickable|be focused|be displayed in viewport/,
     transformer(condition) {
         const CONDITIONS = {
-            exist: 'waitForExist',
+            'exist': 'waitForExist',
             'be enabled': 'waitForEnabled',
             'be displayed': 'waitForDisplayed',
             'be clickable': 'waitForClickable',
