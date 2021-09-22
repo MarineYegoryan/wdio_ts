@@ -10,21 +10,20 @@ Given(/^I am on the (.*) page$/, async (page: string) => {
     await PAGES[page].open()
 });
 
-When(/^I login with (.*) and (.*)$/, async (username: string, password: string) => {
-    await PAGES["login"].login(username, password)
+When(/^I login with (.*) and (.*) on (.*) page$/, async (username: string, password: string, page:string) => {
+    await PAGES[page].login(username, password)
 });
 
-When('I wait for element {string} to {wait condition}', async function (locator, condition) {
+When('I wait for element {locator} to {wait condition}', async function (locator, condition) {
     const webElement: any = await $(locator)
-
+    console.log(locator)
     return webElement[condition];
 });
 
-When(/^(Eventually )?I type (.*) in (.*)$/, async (eventually:string, text: string, element: any) => {
-    const locator = await stepFunctions.findElement(element);
-    if(eventually) {
-        await PAGES["base"].waitElementBeClickable(locator)
-        await locator.setValue(text);
-    }
-    await locator.setValue(text);
-});
+// When(/^(Eventually )?I type (.*) in (.*)$/, async (eventually:string, text: string, element: any) => {
+//     const locator = await stepFunctions.findElement(element);
+//     if(eventually) {
+//         await PAGES["login"].waitElementBeClickable(locator)
+//     }
+//     await locator.setValue(text);
+// });

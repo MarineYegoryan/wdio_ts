@@ -1,5 +1,5 @@
 import {expect, assert} from "chai";
-import {constants} from "../../configs/const";
+import {constants} from "../../config/const";
 import {config} from "../../wdio.conf";
 const timeout = constants.DELAY;
 const baseUrl = config.baseUrl;
@@ -9,7 +9,7 @@ const baseUrl = config.baseUrl;
  */
 class BasePage {
     public async open(url: string = `${baseUrl}`) {
-        await browser.url(`https://the-internet.herokuapp.com/${url}`);
+        await browser.url(`${baseUrl}${url}`);
     }
 
     public async validatePageUrl(url: string) {

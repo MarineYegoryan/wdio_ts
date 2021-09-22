@@ -5,7 +5,7 @@ import { PAGES } from "../../pageobjects/pageFactory";
 */
 
 const findElement = async locatorName => {
-    const splitLocator = locatorName.split(" -> ");
+    const splitLocator = locatorName.split(" > ");
     const page = splitLocator[0];
     const element = splitLocator[1];
     return await PAGES[page][element];
