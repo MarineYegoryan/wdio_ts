@@ -9,7 +9,7 @@
   "author": "Marine Yegoryan",
   "license": "ISC",
   "dependencies": {
-    "@cucumber/cucumber": "latest",
+    "@cucumber/cucumber": "7.3.1",
     "@types/jquery": "^2.0.47",
     "@types/mocha": "^9.0.0",
     "@wdio/cli": "^7.10.1",

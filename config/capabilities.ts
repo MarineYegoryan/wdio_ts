@@ -37,4 +37,4 @@ export const capabilities = {
             "acceptInsecureCerts": true
         }
     }
-}
+};
