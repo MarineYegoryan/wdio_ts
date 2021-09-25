@@ -20,7 +20,6 @@ defineParameterType({
     },
     useForSnippets: false,
 });
-
 defineParameterType({
     regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
     name: 'locator',
