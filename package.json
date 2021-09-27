@@ -8,8 +8,13 @@
   },
   "author": "Marine Yegoryan",
   "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint -- --fix"
+    }
+  },
   "dependencies": {
-    "@cucumber/cucumber": "7.3.1",
+    "@cucumber/cucumber": "latest",
     "@types/jquery": "^2.0.47",
     "@types/mocha": "^9.0.0",
     "@wdio/cli": "^7.10.1",

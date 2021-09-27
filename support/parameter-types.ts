@@ -20,12 +20,13 @@ defineParameterType({
     },
     useForSnippets: false,
 });
+
 defineParameterType({
     name: 'locator',
     regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
-    transformer: async (element) => {
-        console.log("ooooooooo = ", await Elements.findElement(element));
-        return await Elements.findElement(element);
+    transformer: async (locatorPath: string) => {
+        console.log("ooooooooo = ", await Elements.findElement(locatorPath));
+        return await Elements.findElement(locatorPath);
     },
     useForSnippets: false,
 });

@@ -5,7 +5,7 @@ Then(/^I should wait (.*)$/, async (milliseconds: number) => {
     await browser.pause(milliseconds * 1000)
 });
 
-Given(/^I am on the (.*) page$/, async (page: string) => {
+Given(/^I navigate to (.*) page$/, async (page: string) => {
     await PAGES["base"].open(ELEMENTS[page].url);
 });
 
@@ -17,6 +17,6 @@ When(/^I wait for element {locator} to {wait condition}$/, async function (locat
     return locator[condition];
 });
 
-When('I click {locator}', async (locator) => {
+When('I click on {locator}', async (locator) => {
     await locator.click();
 });

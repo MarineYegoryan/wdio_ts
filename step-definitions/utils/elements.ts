@@ -12,31 +12,30 @@ export class Elements {
             elementPosition = parseInt(splitByPositionArray[0]);
             locatorPath = splitByPositionArray.pop();
         }
-        const locator: any = Common.splitByPages(locatorPath);
-        Common.isDefined(locator, "errorMessage");
+        let locatorInfo: any = Common.getLocatorValue(locatorPath);
 
-        if (locator.isCollection) {
-            if (elementPosition > 0) {
-                return this.getElementByPosition(locator, elementPosition);
+        if (locatorInfo.isCollection) {
+            if (elementPosition) {
+                return this.getElementByPosition(locatorInfo.locator, elementPosition);
             }
-            return this.getCollectionElements(locator);
+            return this.getCollectionElements(locatorInfo.locator);
         }
-        return this.getElement(locator);
+        return this.getElement(locatorInfo.locator);
     }
 
-    public static async getElement (locator) {
+    public static async getElement(locator: any) {
         return $(locator);
     };
 
-    public static async getElementByPosition (collection, position) {
-        return $$(collection.selector)[position];
+    public static async getElementByPosition(collection: any, position: number) {
+        return $$(collection)[position];
     };
 
-    public static async getCollectionElements (collection) {
-        return $$(collection.selector);
+    public static async getCollectionElements(collection: any) {
+        return $$(collection);
     };
 
-    public async getCollectionValues (collection){
+    public async getCollectionValues(collection) {
         const values = [];
         for (const element of collection) {
             values.push(await element.getAttribute("value"));
