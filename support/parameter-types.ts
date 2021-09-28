@@ -1,5 +1,5 @@
 import { defineParameterType } from '@cucumber/cucumber';
-import {findElement} from '../step-definitions/utils/stepFunctions'
+import {findElement, getCollectionValues} from '../step-definitions/utils/stepFunctions'
 
 /**
  * Used for returning chai assertion condition
@@ -24,8 +24,22 @@ defineParameterType({
 defineParameterType({
     regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
     name: 'locator',
-    transformer: (element) => {
-        return findElement(element)
+    transformer: (locator) => {
+        return findElement(locator)
+    },
+    useForSnippets: false,
+});
+
+defineParameterType({
+    regexp: /[0-9]*-[th|st|nd|rd]* |[0-9]* |/,
+    name: 'locator position',
+    transformer: (position) => {
+        if (position) {
+            if (parseFloat(position)) {
+                return parseFloat(position) - 1
+            }
+        }
+        return undefined;
     },
     useForSnippets: false,
 });

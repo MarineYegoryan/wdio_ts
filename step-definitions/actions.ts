@@ -1,6 +1,7 @@
 import {PAGES} from "../pageobjects/pageFactory";
 import {Given, Then, When} from "@cucumber/cucumber";
 import * as stepFunctions from "../step-definitions/utils/stepFunctions"
+import { getElement } from "../step-definitions/utils/stepFunctions";
 
 Then(/^I should wait (.*)$/, async (milliseconds: number) => {
     await browser.pause(milliseconds * 1000)
@@ -14,10 +15,10 @@ When(/^I login with (.*) and (.*) on (.*) page$/, async (username: string, passw
     await PAGES[page].login(username, password)
 });
 
-When('I wait for element {locator} to {wait condition}', async function (locator, condition) {
-    const webElement: any = await $(locator)
-    console.log(locator)
-    return webElement[condition];
+When('I wait for {locator position}element(s) {locator} to {wait condition}', async function (locatorPosition, locator, condition) {
+    const webElements: any = await getElement(locator, locatorPosition)
+
+    return webElements[condition]();
 });
 
 // When(/^(Eventually )?I type (.*) in (.*)$/, async (eventually:string, text: string, element: any) => {
