@@ -1,5 +1,5 @@
 import { defineParameterType } from '@cucumber/cucumber';
-import {Elements} from '../step-definitions/utils/elements'
+import {Common} from './common'
 
 /**
  * Used for returning chai assertion condition
@@ -24,9 +24,23 @@ defineParameterType({
 defineParameterType({
     name: 'locator',
     regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
-    transformer: async (locatorPath: string) => {
-        console.log("ooooooooo = ", await Elements.findElement(locatorPath));
-        return await Elements.findElement(locatorPath);
+    transformer: async (locatorPath: string): Promise<object> => {
+        return Common.getLocatorValue(locatorPath);
+    },
+    useForSnippets: false,
+});
+
+
+defineParameterType({
+    regexp: /[0-9]*-[th|st|nd|rd]* |[0-9]* |/,
+    name: 'position',
+    transformer: (position) => {
+        if (position) {
+            if (parseFloat(position)) {
+                return parseFloat(position) - 1;
+            }
+        }
+        return undefined;
     },
     useForSnippets: false,
 });

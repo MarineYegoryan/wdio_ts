@@ -2,9 +2,9 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 const { argv }: any = yargs(hideBin(process.argv));
-let maxInstance = argv.instances || 1;
+let maxInstance: number = argv.instances || 1;
 
-export const capabilities = {
+export const capabilities: object = {
     "chrome": {
         "maxInstances": maxInstance,
         "browserName": "chrome",

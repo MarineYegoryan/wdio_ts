@@ -6,13 +6,13 @@ export const home = {
         child: {
             "continuum": {
                 selector: ".top-navigation__item.continuum",
-                child: {
-                    "link": {
-                        isCollection: true,
-                        selector: ".top-navigation__item-link"
-                    }
-                }
+                child: {},
+            },
+            "link": {
+                isCollection: true,
+                selector: ".top-navigation__item",
             }
+
         }
     }
 };

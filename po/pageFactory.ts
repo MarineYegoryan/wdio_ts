@@ -1,6 +1,9 @@
-import {BasePage, home, login, secure} from "./index"
+import {BasePage} from "./pages/base.page";
+import {secure} from "./pageElements/secure";
+import {home} from "./pageElements/home";
+import {login} from "./pageElements/login";
 
-export const PAGES= {
+export const PAGES = {
     "base": new BasePage()
 };
 
