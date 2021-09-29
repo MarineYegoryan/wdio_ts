@@ -1,17 +1,18 @@
 import yargs from "yargs/yargs";
 import rpService from "wdio-reportportal-service"
 import rpReporter from "wdio-reportportal-reporter"
-import { hideBin } from "yargs/helpers";
-import { urls } from "./config/urls";
-import { capabilities } from "./config/capabilities";
-import { rpConfig } from "./config/rpConfig";
+import {hideBin} from "yargs/helpers";
+import {urls} from "./config/urls";
+import {capabilities} from "./config/capabilities";
+import {rpConfig} from "./config/rpConfig";
 
 
-const { argv }: any = yargs(hideBin(process.argv));
+const {argv}: any = yargs(hideBin(process.argv));
 const BROWSER_NAME = argv.browser || "chrome";
 const ENV_NAME = argv.env || "qa";
 
 let capability = capabilities[BROWSER_NAME];
+console.log(capability);
 let baseUrl = urls[ENV_NAME];
 
 if (!ENV_NAME || !["qa", "dev", "prod"].includes(ENV_NAME)) {
@@ -70,7 +71,7 @@ export const config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [ capability ],
+    capabilities: capability,
     //
     // ===================
     // Test Configurations
