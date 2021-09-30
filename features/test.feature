@@ -4,7 +4,7 @@ Feature: The Internet Guinea Pig Website
 
     Given I navigate to home page
     Then I should wait 5
-    When I click on 2-nd element of "home > top navigation >> link"
+    When I click on 4 element of "home > top navigation >> link"
     Then I should wait 5
 
 

@@ -1,10 +1,10 @@
-import {BasePage} from "./pages/base.page";
+import {HomePage} from "./pages/home.page";
 import {secure} from "./pageElements/secure";
 import {home} from "./pageElements/home";
 import {login} from "./pageElements/login";
 
 export const PAGES = {
-    "base": new BasePage()
+    "base": new HomePage()
 };
 
 export const ELEMENTS = {

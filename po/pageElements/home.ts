@@ -4,11 +4,11 @@ export const home = {
         isCollection: true,
         selector: ".top-navigation__row ",
         child: {
-            "continuum": {
+            continuum: {
                 selector: ".top-navigation__item.continuum",
                 child: {},
             },
-            "link": {
+            link: {
                 isCollection: true,
                 selector: ".top-navigation__item",
             }

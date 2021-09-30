@@ -15,7 +15,8 @@ export class Elements{
     }
 
     public static async getCollectionElements(collection: any, position: number) {
-        return position ? $$(collection)[position - 1] : $$(collection);
+        //TODO filter element from collection by name
+        return position ? $$(collection)[position] : $$(collection);
     }
 
     public async getCollectionValues(collection: any): Promise<string[]> {

@@ -12,10 +12,9 @@ const BROWSER_NAME = argv.browser || "chrome";
 const ENV_NAME = argv.env || "qa";
 
 let capability = capabilities[BROWSER_NAME];
-console.log(capability);
 let baseUrl = urls[ENV_NAME];
 
-if (!ENV_NAME || !["qa", "dev", "prod"].includes(ENV_NAME)) {
+if (!ENV_NAME || !Object.keys(urls).includes(ENV_NAME)) {
     rpReporter.sendLog("ERROR", "enter correct ENVIRONMENT value: env = qa|dev|prod");
     process.exit();
 }

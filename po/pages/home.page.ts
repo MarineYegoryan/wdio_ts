@@ -1,19 +1,19 @@
 import {expect} from "chai";
 import {constants} from "../../config/const";
 import {config} from "../../wdio.conf";
-
 const baseUrl = config.baseUrl;
 
 /**
  * main page object containing all methods, selectors and functionality
  * that is shared across all page objects
  */
-class BasePage {
+class HomePage {
     public delay: number = constants.DELAY;
 
     public async open(url: string = "") {
         await browser.url(`${baseUrl}${url}`);
         await browser.pause(this.delay);
+        await browser.maximizeWindow();
     }
 
     public async validatePageUrl(url: string) {
@@ -56,4 +56,4 @@ class BasePage {
     }
 }
 
-export {BasePage};
+export {HomePage};
