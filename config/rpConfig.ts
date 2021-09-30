@@ -1,7 +1,7 @@
-const args = require("yargs").argv;
-const rpToken = args.rpToken;
+const args: any = require("yargs").argv;
+const rpToken: string = args.rpToken;
 
-export const rpConfig = {
+export const rpConfig: object = {
     reportPortalClientConfig: { // report portal settings
         token: `${rpToken}`,
         endpoint: "https://reportportal.epam.com/api/v1",

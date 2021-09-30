@@ -1,12 +1,12 @@
 import { defineParameterType } from '@cucumber/cucumber';
-import {findElement} from '../step-definitions/utils/stepFunctions'
+import {Common} from './common'
 
 /**
  * Used for returning chai assertion condition
  */
 defineParameterType({
-    regexp: /exist|be enabled|be displayed|be clickable|be focused|be displayed in viewport/,
     name: 'wait condition',
+    regexp: /exist|be enabled|be displayed|be clickable|be focused|be displayed in viewport/,
     transformer(condition) {
         const CONDITIONS = {
             'exist': 'waitForExist',
@@ -22,10 +22,25 @@ defineParameterType({
 });
 
 defineParameterType({
-    regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
     name: 'locator',
-    transformer: (element) => {
-        return findElement(element)
+    regexp: /"([^"\\]*(\\.[^"\\]*)*)"/,
+    transformer: async (locatorPath: string): Promise<object> => {
+        return Common.getLocatorValue(locatorPath);
+    },
+    useForSnippets: false,
+});
+
+
+defineParameterType({
+    regexp: /[0-9]*-[th|st|nd|rd]* |[0-9]* |/,
+    name: 'position',
+    transformer: (position) => {
+        if (position) {
+            if (parseFloat(position)) {
+                return parseFloat(position) - 1;
+            }
+        }
+        return undefined;
     },
     useForSnippets: false,
 });

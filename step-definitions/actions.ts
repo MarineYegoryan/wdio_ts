@@ -1,29 +1,25 @@
-import {PAGES} from "../pageobjects/pageFactory";
+import {ELEMENTS, PAGES} from "../po/pageFactory";
 import {Given, Then, When} from "@cucumber/cucumber";
-import * as stepFunctions from "../step-definitions/utils/stepFunctions"
+import {Elements} from "./utils/elements"
+import LoginPage from "../po/pages/login.page";
 
-Then(/^I should wait (.*)$/, async (milliseconds: number) => {
+Then(/^I should wait (.*)$/, async (milliseconds: number): Promise<void> => {
     await browser.pause(milliseconds * 1000)
-})
-
-Given(/^I am on the (.*) page$/, async (page: string) => {
-    await PAGES[page].open()
 });
 
-When(/^I login with (.*) and (.*) on (.*) page$/, async (username: string, password: string, page:string) => {
-    await PAGES[page].login(username, password)
+Given(/^I navigate to (.*) page$/, async (page: string): Promise<void> => {
+    await PAGES["base"].open(ELEMENTS[page].url);
 });
 
-When('I wait for element {locator} to {wait condition}', async function (locator, condition) {
-    const webElement: any = await $(locator)
-    console.log(locator)
-    return webElement[condition];
+When(/^I login with (.*) and (.*) on (.*) page$/, async (username: string, password: string, page: string): Promise<void> => {
+    await LoginPage.login(username, password);
 });
 
-// When(/^(Eventually )?I type (.*) in (.*)$/, async (eventually:string, text: string, element: any) => {
-//     const locator = await stepFunctions.findElement(element);
-//     if(eventually) {
-//         await PAGES["login"].waitElementBeClickable(locator)
-//     }
-//     await locator.setValue(text);
-// });
+When(/^I wait for element {locator} to {wait condition}$/, async function (locator: object, condition: string): Promise<void> {
+    return locator[condition]();
+});
+
+When('I click on {position}element(s) of {locator}', async (position: number, locator: object): Promise<void> => {
+    const element: any = await Elements.findElement(locator, position);
+    await element.click();
+});

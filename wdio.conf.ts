@@ -1,23 +1,23 @@
 import yargs from "yargs/yargs";
 import rpService from "wdio-reportportal-service"
 import rpReporter from "wdio-reportportal-reporter"
-import { hideBin } from "yargs/helpers";
-import { urls } from "./config/urls";
-import { capabilities } from "./config/capabilities";
-import { rpConfig } from "./config/rpConfig"
+import {hideBin} from "yargs/helpers";
+import {urls} from "./config/urls";
+import {capabilities} from "./config/capabilities";
+import {rpConfig} from "./config/rpConfig";
 
-const { argv }: any = yargs(hideBin(process.argv));
+
+const {argv}: any = yargs(hideBin(process.argv));
 const BROWSER_NAME = argv.browser || "chrome";
-const ENV_NAME = argv.env || "test";
+const ENV_NAME = argv.env || "qa";
 
 let capability = capabilities[BROWSER_NAME];
 let baseUrl = urls[ENV_NAME];
 
-// if (!ENV_NAME || !["qa", "dev", "prod"].includes(ENV_NAME)) {
-//     rpReporter.sendLog("ERROR", "enter correct ENVIRONMENT value: env = qa|dev|prod");
-//        console.log("wrong------------")
-//     process.exit();
-// }
+if (!ENV_NAME || !Object.keys(urls).includes(ENV_NAME)) {
+    rpReporter.sendLog("ERROR", "enter correct ENVIRONMENT value: env = qa|dev|prod");
+    process.exit();
+}
 
 
 export const config = {
@@ -70,7 +70,7 @@ export const config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [ capability ],
+    capabilities: capability,
     //
     // ===================
     // Test Configurations
@@ -78,7 +78,7 @@ export const config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: "info",
+    logLevel: "silent",
     //
     // Set specific log levels per logger
     // loggers:
@@ -140,7 +140,6 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    // reporters: ['spec','reportportal'],
 
     reporters: [
         "spec",
@@ -326,4 +325,4 @@ export const config = {
      */
     //onReload: function(oldSessionId, newSessionId) {
     //}
-}
+};

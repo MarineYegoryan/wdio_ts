@@ -1,19 +1,22 @@
-import {expect, assert} from "chai";
+import {expect} from "chai";
 import {constants} from "../../config/const";
 import {config} from "../../wdio.conf";
-const timeout = constants.DELAY;
 const baseUrl = config.baseUrl;
+
 /**
  * main page object containing all methods, selectors and functionality
  * that is shared across all page objects
  */
-class BasePage {
-    public async open(url: string = `${baseUrl}`) {
+class HomePage {
+    public delay: number = constants.DELAY;
+
+    public async open(url: string = "") {
         await browser.url(`${baseUrl}${url}`);
+        await browser.pause(this.delay);
+        await browser.maximizeWindow();
     }
 
     public async validatePageUrl(url: string) {
-        await browser.pause(1000);
         expect(browser).toHaveUrlContaining(url);
     }
 
@@ -24,33 +27,33 @@ class BasePage {
         });
     }
 
-    public async waitForExist(locator: any, maxWaitTime: number = timeout) {
+    public async waitForExist(locator: any, maxWaitTime: number = this.delay) {
         await locator.waitForExist({
             timeout: maxWaitTime,
             timeoutMsg: `Element ${locator} is not exist`
         });
-    };
+    }
 
-    public async waitForDisplayed(locator: any, maxWaitTime: number = timeout) {
+    public async waitForDisplayed(locator: any, maxWaitTime: number = this.delay) {
         await locator.waitForDisplayed({
             timeout: maxWaitTime,
             timeoutMsg: `Element ${locator} is not displayed`
         });
-    };
+    }
 
-    public async waitForEnabled(locator: any, maxWaitTime: number = timeout) {
+    public async waitForEnabled(locator: any, maxWaitTime: number = this.delay) {
         await locator.waitForEnabled({
             timeout: maxWaitTime,
             timeoutMsg: `Element ${locator} is not enable`
         });
-    };
+    }
 
-    public async waitForClickable(locator: any, maxWaitTime: number = timeout) {
+    public async waitForClickable(locator: any, maxWaitTime: number = this.delay) {
         await locator.waitForClickable({
             timeout: maxWaitTime,
             timeoutMsg: `Element ${locator} is not clickable`
         });
-    };
+    }
 }
 
-export {BasePage};
+export {HomePage};
