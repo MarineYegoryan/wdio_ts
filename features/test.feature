@@ -1,11 +1,11 @@
 Feature: The Internet Guinea Pig Website
 
   Scenario: As a user, I can log into the Insight area
-
     Given I navigate to home page
-    Then I should wait 5
-    When I click on 4 element of "home > top navigation >> link"
-    Then I should wait 5
+    When I wait for 2 seconds
+    Then I wait for element "home > top navigation >> link" to be displayed
+    When I click on 2-nd element "home > top navigation >> link"
+    Then I wait for text on 2-nd element "home > top navigation >> link" to contain "how wet" ignoring case
 
 
 #  Scenario Outline: As a user, I can log into the secure area
