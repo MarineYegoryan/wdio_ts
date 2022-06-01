@@ -8,12 +8,12 @@ Feature: The Internet Guinea Pig Website
     Then I should wait 5
 
 
-#  Scenario Outline: As a user, I can log into the secure area
-#
-#    Given I am on the login page
-#    When I login with <username> and <password> on <page> page
-#
-#    Examples:
-#      | username | password             |page|
-#      | tomsmith | SuperSecretPassword! |base|
-#      | foobar   | barfoo               |base|
+  Scenario Outline: As a user, I can log into the secure area
+
+    Given I am on the login page
+    When I login with <username> and <password> on <page> page
+
+    Examples:
+      | username | password             |page|
+      | tomsmith | SuperSecretPassword! |base|
+      | foobar   | barfoo               |base|
